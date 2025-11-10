@@ -1,5 +1,7 @@
 // backend/server.js
 
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -22,7 +24,14 @@ app.use(helmet());
 app.use(compression());
 
 // Body Parsing & CORS
-app.use(cors());
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',') 
+  : ['http://localhost:3000'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json());
 
 // Serve uploaded documents
@@ -47,10 +56,9 @@ app.use((err, req, res, next) => {
 });
 
 // 📦 Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/passport_automation', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/passport_automation';
+
+mongoose.connect(MONGODB_URI)
 .then(() => console.log('✅ MongoDB connected'))
 .catch((err) => console.error('❌ MongoDB connection error:', err));
 
