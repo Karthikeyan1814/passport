@@ -1,0 +1,124 @@
+/* VerifyDashboard.css */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f1f8f9, #e0f7fa);
+  margin: 0;
+  padding: 0;
+}
+
+.verify-dashboard {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #006064;
+  margin-bottom: 1rem;
+}
+
+.application-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.application-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.app-details p {
+  margin: 0.3rem 0;
+  color: #37474f;
+  font-size: 0.95rem;
+}
+
+.note-section {
+  margin-top: 1rem;
+}
+
+.note-textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.note-textarea:focus {
+  border-color: #00acc1;
+  box-shadow: 0 0 8px rgba(0, 172, 193, 0.3);
+  outline: none;
+}
+
+.action-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.approve-btn,
+.reject-btn {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.approve-btn {
+  background: #00c853;
+  color: white;
+}
+
+.approve-btn:hover {
+  background: #009624;
+  transform: scale(1.05);
+}
+
+.reject-btn {
+  background: #ff5252;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+.dashboard-loader,
+.dashboard-error {
+  text-align: center;
+  margin-top: 2rem;
+  color: #ff1744;
+  font-weight: bold;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
