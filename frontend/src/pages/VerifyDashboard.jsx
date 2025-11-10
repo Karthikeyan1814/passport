@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/VerifyDashboard.css';
+import API_BASE_URL from '../config/api';
 
 const VerifyDashboard = () => {
   const [applications, setApplications] = useState([]);
@@ -12,7 +13,7 @@ const VerifyDashboard = () => {
     const fetchApps = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/verify', {
+        const res = await axios.get(`${API_BASE_URL}/api/verify`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setApplications(res.data);
@@ -35,7 +36,7 @@ const VerifyDashboard = () => {
       const officerNote = notes[id] || '';
 
       await axios.put(
-        `http://localhost:5000/api/verify/${id}`,
+        `${API_BASE_URL}/api/verify/${id}`,
         { status, officerNotes: officerNote },
         { headers: { Authorization: `Bearer ${token}` } }
       );

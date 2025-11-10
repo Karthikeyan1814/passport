@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/AdminDashboard.css';
+import API_BASE_URL from '../config/api';
 
 const AdminDashboard = () => {
   const [applications, setApplications] = useState([]);
@@ -12,7 +13,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchApplications = async () => {
         try {
-          const res = await axios.get("http://localhost:5000/api/applications", {
+          const res = await axios.get(`${API_BASE_URL}/api/applications`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setApplications(res.data);
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
     
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/admin-verify/${id}`,
+        `${API_BASE_URL}/api/admin/admin-verify/${id}`,
         {}, // no body
         {
           headers: {
@@ -57,7 +58,7 @@ const AdminDashboard = () => {
   const handleIssuePassport = async (id) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/issue-passport/${id}`,
+        `${API_BASE_URL}/api/admin/issue-passport/${id}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

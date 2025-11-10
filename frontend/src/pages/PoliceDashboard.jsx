@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/PoliceDashboard.css'; // Optional: Style file
+import API_BASE_URL from '../config/api';
 
 const PoliceDashboard = () => {
   const [applications, setApplications] = useState([]);
@@ -14,7 +15,7 @@ const PoliceDashboard = () => {
   const fetchPendingApplications = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get('http://localhost:5000/api/police/pending', {
+      const res = await axios.get(`${API_BASE_URL}/api/police/pending`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -29,7 +30,7 @@ const PoliceDashboard = () => {
     const token = localStorage.getItem('token');
     try {
       await axios.put(
-        `http://localhost:5000/api/police/verify/${id}`,
+        `${API_BASE_URL}/api/police/verify/${id}`,
         {
           verified: isVerified,
           notes: notes || 'Verified by police',
